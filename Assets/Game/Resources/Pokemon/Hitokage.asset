@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9584ad561013a495ab8e831149d0f46a, type: 3}
+  m_Name: Hitokage
+  m_EditorClassIdentifier: 
+  name: "\u30D2\u30C8\u30AB\u30B2"
+  description: 
+  frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
+  backSprite: {fileID: 21300000, guid: ed8e1d9976a1fd94d961840d8f6e7764, type: 3}
+  type1: 2
+  type2: 0
+  attack: 52
+  defense: 43
+  spAttack: 60
+  spDefense: 50
+  speed: 65
+  maxHP: 39
+  learnableMoves:
+  - _base: {fileID: 11400000, guid: b32e372ebf5524d8fac19a66e585793e, type: 2}
+    level: 1
+  - _base: {fileID: 11400000, guid: 7df028febb06548f08eb5f52455a27a5, type: 2}
+    level: 2
+  - _base: {fileID: 11400000, guid: 7df028febb06548f08eb5f52455a27a5, type: 2}
+    level: 2
+  - _base: {fileID: 11400000, guid: 6deac9792f8274d96971fa4e941c2a85, type: 2}
+    level: 2
