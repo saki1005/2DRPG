@@ -27,6 +27,7 @@ public class Pokemon
 
     // 状態異常の変数
     public Condition Status { get; private set; }
+    public int SleepTime { get; set; }
 
     public bool HpChange { get; set; }
 
@@ -90,7 +91,7 @@ public class Pokemon
         Stats.Add(Stat.SpAttack, Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5);
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5);
-        MaxHP = Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10;
+        MaxHP = Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 10 + Level;
     }
 
     int GetStat(Stat stat)
@@ -210,10 +211,33 @@ public class Pokemon
 
     public void SetStatus(ConditionID conditionID)
     {
+        if (Status != null)
+        {
+            return;
+        }
         // どの状態異常になるのか設定
         Status = ConditionDB.Conditions[conditionID];
+        Status?.OnStart?.Invoke(this);
         // ログに追加
         StatusChanges.Enqueue($"{Base.Name}{Status.StartMessage}");
+
+        
+
+    }
+
+    // 状態異常から回復
+    public void CureStatus()
+    {
+        Status = null;
+    }
+
+    public bool OnBeforeMove()
+    {
+        if (Status?.OnBeforeMove != null)
+        {
+            return Status.OnBeforeMove(this);
+        }
+        return true;
     }
 
     // ターン終了時にやること（状態異常）

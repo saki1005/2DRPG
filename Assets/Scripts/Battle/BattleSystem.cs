@@ -163,6 +163,13 @@ public class BattleSystem : MonoBehaviour
     // 技の実装(実行するUnit, 対象Unit, 技)
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
+        // まひなら技を出せない
+        bool canRunMove = sourceUnit.Pokemon.OnBeforeMove();
+        yield return ShowStatusChanges(sourceUnit.Pokemon);
+        if (!canRunMove)
+        {
+            yield break;
+        }
 
         move.PP--;
         yield return (dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}の{move.Base.Name}！"));
